@@ -1,7 +1,5 @@
-#project to test my skills on create a program that converts text to numbers
+# 1 hour project to test my skills to create a program that converts text to numbers
 # ex ("one hundred twenty three" -> 123)
-
-
 
 # start
 def run(input_text):
@@ -13,9 +11,6 @@ def run(input_text):
     if number == None:
         return 0
     return number
-
-    
-    
 
 def convert_text_to_number(text):
     words = text.lower().split()
@@ -46,7 +41,6 @@ def convert_word_to_number(word):
     elif word in get_large_dict():
         return get_large_dict()[word]
     return 0
-
 
 def get_small_dict():
     # convert text to number
