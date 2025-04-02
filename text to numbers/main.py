@@ -18,21 +18,26 @@ def run(input_text):
     
 
 def convert_text_to_number(text):
-    final = 0
-    temp_numbers = []
-    words = text.split()
-    for word in words:
-        temp_numbers.append(convert_word_to_number(word))
-    # print(temp_numbers)
-    # add the numbers together if less than 100\
+    words = text.lower().split()
+    small_dict = get_small_dict()
+    large_dict = get_large_dict()
 
-    for number in temp_numbers:
-        if number < 100:
-            final += number
+    current = 0
+    total = 0
+
+    for word in words:
+        if word in small_dict:
+            current += small_dict[word]
+        elif word == "hundred":
+            current *= 100
+        elif word in large_dict:
+            current *= large_dict[word]
+            total += current
+            current = 0
         else:
-            final *= number
-    print(final)
-    return final
+            return None  # unknown word
+
+    return total + current
 
 
 def convert_word_to_number(word):
