@@ -1,5 +1,7 @@
 # Text to Number Converter
 
+### 1 Hour Mini Project
+
 A simple Python program that converts numbers written in words (e.g., `"one hundred twenty three"`) into their integer form (`123`). This was built as a resume project to demonstrate string parsing, number mapping, and logical reasoning using Python.
 
 ---
