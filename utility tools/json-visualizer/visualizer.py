@@ -57,6 +57,28 @@ def print_json_keys(data: Any, indent: int = 0):
         for item in data:
             print_json_keys(item, indent + 1)
 
+def export_json_tree_view(data: Any, filename: str = "tree.txt", filepath: str = "./export", indent: int = 0):
+    os.makedirs(filepath, exist_ok=True)
+    lines = []
+
+    def build_lines(data: Any, indent: int = 0):
+        spacing = '  ' * indent
+        if isinstance(data, dict):
+            for key, value in data.items():
+                lines.append(f"{spacing}{key}/")
+                build_lines(value, indent + 1)
+        elif isinstance(data, list):
+            lines.append(f"{spacing}[]")
+            for item in data:
+                build_lines(item, indent + 1)
+
+    build_lines(data, indent)
+
+    with open(os.path.join(filepath, filename), 'w', encoding='utf-8') as f:
+        f.write('\n'.join(lines))
+
+    print(f"Exported tree view to {filename}")
+
 
 def export_to_json(data: Dict, filename: str = "export.json", filepath: str = ".\export"):
     with open(os.path.join(filepath, filename), 'w') as f:
@@ -149,6 +171,8 @@ def run(data):
     export_to_json(data)
     export_positions_to_csv(data)
     export_to_sqlite(data)
+    # optional: export site map to txt file
+    export_json_tree_view(data)
 def main():
     while True:
         choice = menu()
