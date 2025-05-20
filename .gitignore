@@ -7,3 +7,4 @@
 *.db
 tree.txt
 *.txt
+.venv
